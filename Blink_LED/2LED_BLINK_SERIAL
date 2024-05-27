@@ -1,0 +1,47 @@
+char ans = 'o';
+
+void setup() {
+
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  // baud rate: rate at which data is sent
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  
+  while(1) {
+
+    switch(ans) {
+
+      case 'o':
+         Serial.println("Enter time you want to feed cat: select 1");
+         ans = Serial.read();
+
+      case '1': 
+      while(ans == '1') {
+           showLightParade();
+        if(Serial.available()) {
+             ans = Serial.read();
+        }
+      }
+
+      default: 
+         Serial.println("Please enter 1");
+               ans = Serial.read();
+      { 
+    }
+  } 
+}
+
+}
+void showLightParade() {
+ 
+    digitalWrite(3, LOW);
+  	digitalWrite(2, HIGH);
+    delay(1000);
+    digitalWrite(3, HIGH);
+    digitalWrite(2, LOW);
+    delay(1000); 
+}
